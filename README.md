@@ -59,3 +59,7 @@ then run migrations on it.
 Take [the script I wrote to turn MovieLens 1M data into fixtures](https://github.com/tiy-lv-python-2016-02/django-movies-part-2/blob/master/convert_ml_1m_data.py)
 and modify it to turn your CSV data into fixtures, then load those fixtures
 with `python manage.py loaddata <fixture_file>`.
+
+## External Links
+* [Django URLs](https://docs.djangoproject.com/en/1.8/topics/http/urls/)
+* [Django Views](https://docs.djangoproject.com/en/1.9/topics/http/views/)
