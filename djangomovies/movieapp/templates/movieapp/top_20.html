@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Top 20</title>
+    </head>
+    <body>
+        <h1>Top 20 Movie List</h1>
+        <ul>
+            {% for movie in movies %}
+            <li><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a>
+            {{ movie.avg_rating }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
