@@ -5,7 +5,11 @@ from moviesite.models import Movie, Rater
 
 
 def list_movies(request):
-    # This is bad. Need to figure out how to sort based on method.
+    """
+    Since database queries can't be sorted on a property I did that sorting
+    here. There is probably a better way to do this.
+    :return: A sorted list of the 20 highest rated movies.
+    """
     all_movies = Movie.objects.all()
     movies = sorted(all_movies,
                     key=lambda x: x.average_rating,
@@ -30,10 +34,3 @@ def rater_detail(request, id):
                   {"rater": rater,
                    "rater_ratings": rater_ratings,
                    "time_run": time_run})
-
-
-
-
-
-
-

@@ -11,26 +11,35 @@ class Movie(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def rating_count(self):
+        """
+        :return: Total count of ratings for this movie.
+        """
         return self.rating_set.count()
 
     @property
     def average_rating(self):
+        """
+        :return: Average score.
+        """
         rating = self.rating_set.aggregate(avg=Avg('rating_value'))
         return rating['avg']
 
     @property
     def all_ratings(self):
-        # all users that rated this film
+        """
+        :return: A list of all ratings for this film
+        """
         return self.rating_set.all()
-
 
     def __str__(self):
         return self.title
 
 
 class Rater(models.Model):
-
-    # Switch to options
+    """
+    There could be some more options and validators set up here but
+    all of the fields are covered.
+    """
     gender = models.CharField(max_length=1, null=True)
     age = models.IntegerField(null=True, validators=[MinValueValidator(1),
                                                      MaxValueValidator(150)]
@@ -41,6 +50,9 @@ class Rater(models.Model):
 
     @property
     def all_ratings(self):
+        """
+        :return: A list of all ratings made by this rater.
+        """
         return self.rating_set.all()
 
     def __str__(self):
@@ -55,28 +67,3 @@ class Rating(models.Model):
     rating_value = models.FloatField(help_text="Enter a rating (1-10)",
                                      validators=[MinValueValidator(1),
                                                  MaxValueValidator(10)])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

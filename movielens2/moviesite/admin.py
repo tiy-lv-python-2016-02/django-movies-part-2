@@ -15,8 +15,3 @@ class RaterAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ("rating_value", "movie", "rater", "created_at")
-
-
-
-
-
