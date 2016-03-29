@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    <ol>
+        {% for movie in movies %}
+        <li><a href="{% url 'movie_detail' movie.id %}">{{movie.title}}</a> rating: {{ movie.average_rating }}</li>
+        {% endfor %}
+
+
+    </ol>
+
+</body>
+</html>

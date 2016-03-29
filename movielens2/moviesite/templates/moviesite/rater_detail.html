@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rater Detail</title>
+</head>
+<body>
+<h1>Rater Information</h1>
+
+<ul>
+    <li>Gender: {{ rater.gender }}</li>
+    <li>Age: {{ rater.age }}</li>
+    <li>Occupation: {{ rater.occupation }}</li>
+    <li>zip_code: {{ rater.zip_code }}</li>
+
+</ul>
+
+<h2>Rated Movies</h2>
+<ul>
+    {% for rating in rater.all_ratings %}
+    <li><a href="{% url 'movie_detail' rating.movie_id %}">{{ rating.movie }}</a>   {{ rating.rating_value }}</li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
