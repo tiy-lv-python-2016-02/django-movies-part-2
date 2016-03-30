@@ -5,6 +5,9 @@ from django.db.models import Avg
 
 
 class Rater(models.Model):
+    """
+    settings for Rater model
+    """
     MALE = 'M'
     FEMALE = 'F'
 
@@ -23,6 +26,9 @@ class Rater(models.Model):
 
 
 class Movie(models.Model):
+    """
+    settings for the movie model
+    """
     title = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     genre = models.CharField(max_length=200, blank=True)
@@ -32,11 +38,17 @@ class Movie(models.Model):
         return self.title
 
     def avg_rating(self):
+        """
+        returns average rating of the movies rating set
+        """
         rating = self.rating_set.aggregate(avg=Avg('rating'))
         return rating['avg']
 
 
 class Rating(models.Model):
+    """
+    settings for the rating model
+    """
     rating = models.FloatField(
         validators=[MinValueValidator(0.1), MaxValueValidator(10.0)])
     movie = models.ForeignKey(Movie)

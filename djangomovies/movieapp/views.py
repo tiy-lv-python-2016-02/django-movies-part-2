@@ -4,6 +4,10 @@ from django.shortcuts import render, get_object_or_404
 
 
 def movie_detail(request, id):
+    """
+    gets movie object for movie_detail.html
+    404 if none
+    """
 
     movie = get_object_or_404(Movie, pk=id)
 
@@ -11,6 +15,10 @@ def movie_detail(request, id):
 
 
 def rater_detail(request, id):
+    """
+    gets rater object for rater_detail.html
+    404 if none
+    """
 
     rater = get_object_or_404(Rater, pk=id)
 
@@ -18,6 +26,9 @@ def rater_detail(request, id):
 
 
 def top_20(request):
+    """
+    sorts movies by average rating, displaying first 20
+    """
     movies = Movie.objects.annotate(avg_rating=Avg('rating__rating')).order_by(
         "-avg_rating")[:20]
 
