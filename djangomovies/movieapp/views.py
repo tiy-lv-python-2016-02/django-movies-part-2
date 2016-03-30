@@ -1,6 +1,5 @@
 from django.db.models import Avg
-from movieapp.models import Movie, Rater, Rating
-from django.http import HttpResponse, Http404
+from movieapp.models import Movie, Rater
 from django.shortcuts import render, get_object_or_404
 
 
@@ -19,6 +18,7 @@ def rater_detail(request, id):
 
 
 def top_20(request):
-    movies = Movie.objects.all().order_by('rater__movie__rating')[0:20]
+    movies = Movie.objects.annotate(avg_rating=Avg('rating__rating')).order_by(
+        "-avg_rating")[:20]
 
     return render(request, "movieapp/top_20.html", {"movies": movies})
